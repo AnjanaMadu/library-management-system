@@ -26,7 +26,6 @@ jobs:
           GOOS=linux GOARCH=arm64 go build -o lms-linux-arm64
       - name: Build for macOS
         run: |
-          GOOS=darwin GOARCH=386 go build -o lms-darwin-386
           GOOS=darwin GOARCH=amd64 go build -o lms-darwin-amd64
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
