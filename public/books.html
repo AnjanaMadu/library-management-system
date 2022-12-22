@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage books</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-800 text-white">
+  <div class="container mx-auto py-8">
+    <h1 class="text-2xl font-bold mb-4">Manage books</h1>
+
+    <form action="/api/addBook" method="GET" class="mb-4 bg-gray-900 p-4 rounded-lg">
+      <h2 class="text-xl font-bold mb-2 text-white">Add a book</h2>
+      <div class="mb-2">
+        <label for="name" class="block font-bold mb-2 text-white">Name:</label>
+        <input type="text" name="name" id="name" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+      </div>
+      <div class="mb-4">
+        <label for="author" class="block font-bold mb-2 text-white">Author:</label>
+        <input type="text" name="author" id="author" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+      </div>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        Add book
+      </button>
+    </form>
+
+    <form action="/api/removeBook" method="GET" class="mb-4 bg-gray-900 p-4 rounded-lg">
+      <h2 class="text-xl font-bold mb-2 text-white">Remove a book</h2>
+      <div class="mb-4">
+        <label for="id" class="block font-bold mb-2 text-white">Book ID:</label>
+        <input type="text" name="id" id="id" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+      </div>
+      <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+        Remove book
+      </button>
+    </form>
+  </div>
+</body>
+</html>

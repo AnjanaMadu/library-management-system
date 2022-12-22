@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marking returns and takes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-800">
+  <div class="container mx-auto py-8">
+    <h1 class="text-2xl font-bold mb-4 text-white">Marking returns and takes</h1>
+
+    <div class="mb-4">
+      <h2 class="text-xl font-bold mb-2 text-white">Marking of taking of book</h2>
+      <form action="/api/markTake" method="GET" class="bg-gray-900 p-4 rounded-lg">
+        <div class="mb-2">
+          <label for="bookId" class="block font-bold mb-2 text-white">Book ID:</label>
+          <input type="text" name="bookId" id="bookId" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+        </div>
+        <div class="mb-4">
+          <label for="memId" class="block font-bold mb-2 text-white">Member ID:</label>
+          <input type="text" name="memId" id="memId" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+          Borrow book
+        </button>
+      </form>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="text-xl font-bold mb-2 text-white">Marking of returning of book</h2>
+      <form action="/api/markReturn" method="GET" class="bg-gray-900 p-4 rounded-lg">
+        <div class="mb-2">
+            <label for="bookId" class="block font-bold mb-2 text-white">Book ID:</label>
+            <input type="text" name="bookId" id="bookId" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+          </div>
+        <div class="mb-4">
+          <label for="memId" class="block font-bold mb-2 text-white">Member ID:</label>
+          <input type="text" name="memId" id="memId" class="border rounded w-full py-2 px-3 text-gray-100 bg-gray-800" required>
+        </div>
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+          Return book
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

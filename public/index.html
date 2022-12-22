@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+  </head>
+  <body class="bg-gray-800 h-screen">
+    <header class="bg-gray-900 py-8">
+      <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-white text-center">Library Management System</h1>
+      </div>
+    </header>
+    <main class="py-8">
+      <div class="container mx-auto">
+        <h2 class="text-2xl font-bold mb-4 text-white">Welcome to the Library Management System</h2>
+        <div class="flex flex-wrap -mx-4">
+          <div class="w-full md:w-1/2 px-4 mb-8">
+            <a href="/members" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full block">
+              Register or Delete Members
+            </a>
+            <br>
+            <a href="/didntReturn" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full block">
+              Check who didn't return books (beta)
+            </a>
+          </div>
+          <div class="w-full md:w-1/2 px-4 mb-8">
+            <a href="/books" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full block">
+              Add or Remove Books
+            </a>
+            <br>
+            <a href="/borrowed" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full block">
+              Mark takes and retuns
+            </a>
+          </div>
+        </div>
+        
+        <img src="https://cdn.pixabay.com/photo/2019/02/15/11/04/book-3998252_960_720.jpg" alt="Library shelves with books" class="mx-auto rounded-lg">
+      </div>
+    </main>
+    <footer class="bg-gray-900 py-4">
+      <div class="container mx-auto text-center text-gray-100">
+        &copy; 2022 Library Management System
+      </div>
+    </footer>
+  </body>
+</html>
