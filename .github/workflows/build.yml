@@ -1,9 +1,6 @@
 name: Build and Release
 
-on:
-  push:
-    branches:
-      - master
+on: workflow_dispatch
 
 jobs:
   build:
@@ -30,7 +27,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
-          artifact: lms-windows-386.exe,lms-windows-amd64.exe,lms-linux-386,lms-linux-amd64,lms-linux-arm,lms-linux-arm64,lms-darwin-386,lms-darwin-amd64
+          artifacts: lms-windows-386.exe,lms-windows-amd64.exe,lms-linux-386,lms-linux-amd64,lms-linux-arm,lms-linux-arm64,lms-darwin-amd64
           artifactContentType: application/octet-stream
           body: 'This is release ${{ github.run_number }}.
           
