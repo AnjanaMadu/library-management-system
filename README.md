@@ -23,6 +23,9 @@ This project was developed by [@AnjanaMadu](https://github.com/AnjanaMadu).
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 📹 Resources 📹
+## 📹 Instructions
 
-- Check out the video in the repository for a tutorial on creating tables in the Microsoft Access database.
+- Download the database.accdb file from the repository or create a new Microsoft Access database. There is a video in the repository that shows how to create a table in the database.
+- Download the executable file from the releases page.
+- Place the executable file and the database file in the same folder. (Database file must be named `database.accdb`.)
+- Run the executable file.
