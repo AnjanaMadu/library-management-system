@@ -25,7 +25,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 📹 Instructions
 
-- Download the database.accdb file from the repository or create a new Microsoft Access database. There is a video in the repository that shows how to create a table in the database.
-- Download the executable file from the releases page.
-- Place the executable file and the database file in the same folder. (Database file must be named `database.accdb`.)
+- Download the zip file from the releases page according to your operating system.
+- Extract the zip file.
+- Use my database file or create your own database file. You can watch `how to craete tables.mp4` to learn how to create the tables. The database should be in the same folder as the executable file and named `database.accdb`.
 - Run the executable file.
