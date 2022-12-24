@@ -28,4 +28,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Download the zip file from the releases page according to your operating system.
 - Extract the zip file.
 - Use my database file or create your own database file. You can watch `how to craete tables.mp4` to learn how to create the tables. The database should be in the same folder as the executable file and named `database.accdb`.
+- Make a file named `login.txt` in the same folder as the executable file. The file should contain the username and password of the admin account in the following format:
+
+```txt
+username:password
+```
+ default username: `admin` and password: `admin`
 - Run the executable file.

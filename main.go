@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"os"
 	"strconv"
 	"time"
 
@@ -34,6 +35,17 @@ func returnPg(typee, msg, ref string) string {
 	`, typee, msg, ref)
 }
 
+func checkLogin(inp string) bool {
+	data, err := os.ReadFile("login.txt")
+	var login string
+	if err != nil {
+		login = "admin:admin"
+	} else {
+		login = string(data)
+	}
+	return inp == login
+}
+
 func main() {
 	// Create router
 	r := gin.Default()
@@ -47,16 +59,48 @@ func main() {
 
 	// Serve static files
 	r.GET("/", func(ctx *gin.Context) {
+		c, err := ctx.Cookie("login")
+		if err != nil || !checkLogin(c) {
+			ctx.Redirect(302, "/login")
+			return
+		}
 		ctx.File("./public/index.html")
 	})
 	r.GET("/books", func(ctx *gin.Context) {
+		c, err := ctx.Cookie("login")
+		if err != nil || !checkLogin(c) {
+			ctx.Redirect(302, "/login")
+			return
+		}
 		ctx.File("./public/books.html")
 	})
 	r.GET("/members", func(ctx *gin.Context) {
+		c, err := ctx.Cookie("login")
+		if err != nil || !checkLogin(c) {
+			ctx.Redirect(302, "/login")
+			return
+		}
 		ctx.File("./public/members.html")
 	})
 	r.GET("/borrowed", func(ctx *gin.Context) {
+		c, err := ctx.Cookie("login")
+		if err != nil || !checkLogin(c) {
+			ctx.Redirect(302, "/login")
+			return
+		}
 		ctx.File("./public/borrowed.html")
+	})
+	r.GET("/login", func(ctx *gin.Context) {
+		ctx.File("./public/login.html")
+	})
+
+	r.POST("/login", func(ctx *gin.Context) {
+		if checkLogin(ctx.PostForm("username") + ":" + ctx.PostForm("password")) {
+			ctx.SetCookie("login", ctx.PostForm("username")+":"+ctx.PostForm("password"), 3600, "/", "", false, true)
+			ctx.Redirect(302, "/")
+		} else {
+			ctx.Redirect(302, "/login?error=1")
+		}
 	})
 
 	r.GET("/didntReturn", func(ctx *gin.Context) {
