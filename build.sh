@@ -1,5 +1,5 @@
 # Set the output directory for the binaries
-OUTPUT_DIR="./build"
+OUTPUT_DIR="./output"
 
 # Create the output directory if it doesn't exist
 if [ ! -d $OUTPUT_DIR ]; then
@@ -25,11 +25,12 @@ for TARGET in $TARGETS; do
   fi
 
   # Build the binary
-  GOOS=$OS GOARCH=$ARCH go build -o $OUTPUT_DIR/$BIN_NAME
+  echo "Building $OS/$ARCH"
+  GOOS=$OS GOARCH=$ARCH go build -o $BIN_NAME
 
   # Zip the binary and the public folder into a file named "lms-$OS-$ARCH.zip"
-  zip $OUTPUT_DIR/lms-$OS-$ARCH.zip $OUTPUT_DIR/$BIN_NAME public database.accdb
+  7z a -tzip $OUTPUT_DIR/lms-$OS-$ARCH.zip $BIN_NAME public database.accdb
 
   # Delete the binary
-  rm $OUTPUT_DIR/$BIN_NAME
+  rm $BIN_NAME
 done
