@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o main && chmod +x main && go clean
+RUN go build -o main . && chmod +x main && go clean
 
-CMD cd /app && ./main  
+CMD ["/app/main"]
