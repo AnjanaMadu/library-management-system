@@ -1,10 +1,9 @@
 FROM golang:alpine
 
-COPY ["database.accdb", "public", "html", "main.go", "go.mod", "go.sum", "/"]
+WORKDIR /app
 
-RUN go build -o /main && go clean \
-    && rm -rf main.go go.mod go.sum html
+COPY . .
 
-EXPOSE 8080
+RUN go build -o main && chmod +x main && go clean
 
-CMD ["/main"]
+CMD cd /app && ./main  
