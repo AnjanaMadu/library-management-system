@@ -35,3 +35,14 @@ username:password
 ```
  default username: `admin` and password: `admin`
 - Run the executable file.
+
+<!-- Screenshots -->
+## 📷 Screenshots
+
+![Login Page](screenshots/loginPage.png)
+
+![Home Page](screenshots/homePage.png)
+
+![Not Returned Table](screenshots/notReturnedTable.png)
+
+![Mark Takes and Returns](screenshots/markTakesReturns.png)
