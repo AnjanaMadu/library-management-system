@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" />
+  </head>
+  <body class="bg-gray-800 text-white">
+    <div class="container mx-auto py-5">
+      <h1 class="mb-4 text-2xl font-bold">{{title}}</h1>
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-left text-sm text-gray-400">
+          <thead class="text-x bg-gray-700 text-white">
+            <!-- <tr>
+              <th scope="col" class="p-3 pl-5">Column 1</th>
+              <th scope="col" class="p-3">Column 2</th>
+              <th scope="col" class="p-3">Column 3</th>
+            </tr> -->
+            {{columns}}
+          </thead>
+          <tbody class="bg-gray-900">
+            <!-- <tr>
+              <td class="border-b border-slate-700 p-2 pl-8 text-slate-400">1</td>
+              <td class="border-b border-slate-700 p-2 pl-3 text-slate-400">Malcolm Lockyer</td>
+              <td class="border-b border-slate-700 p-2 pl-3 text-slate-400">1961</td>
+            </tr>
+            <tr>
+              <td class="border-b border-slate-700 p-2 pl-8 text-slate-400">2</td>
+              <td class="border-b border-slate-700 p-2 pl-3 text-slate-400">The Eagles</td>
+              <td class="border-b border-slate-700 p-2 pl-3 text-slate-400">1972</td>
+            </tr>
+            <tr>
+              <td class="border-b border-slate-600 p-2 pl-8 text-slate-400">3</td>
+              <td class="border-b border-slate-600 p-2 pl-3 text-slate-400">Earth, Wind, and Fire</td>
+              <td class="border-b border-slate-600 p-2 pl-3 text-slate-400">1975</td>
+            </tr>
+            <tr>
+              <td class="p-2 pl-8 text-slate-400">4</td>
+              <td class="p-2 pl-3 text-slate-400">The Beatles</td>
+              <td class="p-2 pl-3 text-slate-400">1968</td>
+            </tr> -->
+            {{rows}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

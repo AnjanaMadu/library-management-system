@@ -3,13 +3,13 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"library-management-system/html"
 	"os"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/mattn/go-adodb"
-	"github.com/olekukonko/tablewriter"
 )
 
 func returnPg(typee, msg, ref string) string {
@@ -95,7 +95,8 @@ func main() {
 	})
 
 	r.POST("/login", func(ctx *gin.Context) {
-		if checkLogin(ctx.PostForm("username") + ":" + ctx.PostForm("password")) {
+		logim := ctx.PostForm("username") + ":" + ctx.PostForm("password")
+		if checkLogin(logim) {
 			ctx.SetCookie("login", ctx.PostForm("username")+":"+ctx.PostForm("password"), 3600, "/", "", false, true)
 			ctx.Redirect(302, "/")
 		} else {
@@ -103,34 +104,107 @@ func main() {
 		}
 	})
 
-	r.GET("/didntReturn", func(ctx *gin.Context) {
-		// Execute a SELECT statement
-		rows, err := db.Query("SELECT bookId, memId, dateBorrowed FROM borrowed WHERE dateReturned IS NULL")
-		if err != nil {
-			println(err.Error())
-		}
-		defer rows.Close()
+	// r.GET("/didntReturn", func(ctx *gin.Context) {
+	// 	// Execute a SELECT statement
+	// 	rows, err := db.Query("SELECT bookId, memId, dateBorrowed FROM borrowed WHERE dateReturned IS NULL")
+	// 	if err != nil {
+	// 		println(err.Error())
+	// 	}
+	// 	defer rows.Close()
 
-		table := tablewriter.NewWriter(ctx.Writer)
-		table.SetHeader([]string{"Book ID", "Member ID", "Date Taken"})
-	
-		// Iterate over the rows and print the values of the columns
-		for rows.Next() {
-			var bookId string
-			var memId string
-			var dateBorrowed sql.NullTime
-			err := rows.Scan(&bookId, &memId, &dateBorrowed)
-			if err != nil {
-				println(err.Error())
+	// 	table := tablewriter.NewWriter(ctx.Writer)
+	// 	table.SetHeader([]string{"Book ID", "Member ID", "Date Taken"})
+
+	// 	// Iterate over the rows and print the values of the columns
+	// 	for rows.Next() {
+	// 		var bookId string
+	// 		var memId string
+	// 		var dateBorrowed sql.NullTime
+	// 		err := rows.Scan(&bookId, &memId, &dateBorrowed)
+	// 		if err != nil {
+	// 			println(err.Error())
+	// 		}
+	// 		table.Append([]string{bookId, memId, dateBorrowed.Time.Format("2006-01-02 06:15:04 PM")})
+	// 	}
+
+	// 	if table.NumLines() == 0 {
+	// 		ctx.String(200, "No books have to be returned")
+	// 	} else {
+	// 		table.Render()
+	// 	}
+	// })
+
+	r.GET("/view/:table", func(ctx *gin.Context) {
+		c, err := ctx.Cookie("login")
+		if err != nil || !checkLogin(c) {
+			ctx.Redirect(302, "/login")
+			return
+		}
+
+		view := ctx.Param("table")
+		var title string
+		cols, rows := []string{}, [][]string{}
+
+		switch view {
+		case "books":
+			cols = []string{"Book ID", "Book Name", "Author"}
+
+			rws, _ := db.Query("SELECT bookId, bookName, author FROM books")
+			defer rws.Close()
+
+			for rws.Next() {
+				var bookId string
+				var bookName string
+				var author string
+				err := rws.Scan(&bookId, &bookName, &author)
+				if err != nil {
+					println(err.Error())
+				}
+				rows = append(rows, []string{bookId, bookName, author})
 			}
-			println(bookId, memId, dateBorrowed.Time.Format("2006-01-02 06:15:04 PM"))
-			table.Append([]string{bookId, memId, dateBorrowed.Time.Format("2006-01-02 06:15:04 PM")})
+			title = "Books Table"
+		case "members":
+			cols = []string{"Member ID", "Member Name", "Grade"}
+
+			rws, _ := db.Query("SELECT memId, memName, grade FROM members")
+			defer rws.Close()
+
+			for rws.Next() {
+				var memId string
+				var memName string
+				var grade string
+				err := rws.Scan(&memId, &memName, &grade)
+				if err != nil {
+					println(err.Error())
+				}
+				rows = append(rows, []string{memId, memName, grade})
+			}
+			title = "Members Table"
+
+		case "didntReturn":
+			cols = []string{"Book ID", "Member ID", "Date Taken"}
+
+			rws, _ := db.Query("SELECT bookId, memId, dateBorrowed FROM borrowed WHERE dateReturned IS NULL")
+			defer rws.Close()
+
+			for rws.Next() {
+				var bookId string
+				var memId string
+				var dateBorrowed sql.NullTime
+				err := rws.Scan(&bookId, &memId, &dateBorrowed)
+				if err != nil {
+					println(err.Error())
+				}
+				rows = append(rows, []string{bookId, memId, dateBorrowed.Time.Format("2006-01-02 06:15:04 PM")})
+			}
+			title = "Books that haven't been returned"
 		}
 
-		if table.NumLines() == 0 {
-			ctx.String(200, "No books have to be returned")
+		ctx.Header("Content-Type", "text/html")
+		if len(rows) == 0 {
+			ctx.String(200, returnPg("Error", "No data to display", "/"))
 		} else {
-			table.Render()
+			ctx.String(200, html.MakeTable(title, cols, rows))
 		}
 	})
 
