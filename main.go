@@ -23,7 +23,7 @@ func returnPg(typee, msg, ref string) string {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
 </head>
 <body class="bg-gray-800">
-  <main class="py-8">
+  <main class="p-5 sm:p-8">
     <div class="container mx-auto">
       <h1 class="text-3xl font-bold text-white text-center mb-8">%s</h1>
       <p class="text-xl text-gray-100 text-center mb-8">%s</p>
