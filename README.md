@@ -1,7 +1,9 @@
 # 📚 Library Management System 
 
 A web application for managing a library's books and members. 
----
+
+-----
+
 This project works with Windows only. You will need to have Microsoft Access installed to use this project. I have tested this project on Windows 10 with Microsoft Access 2021.
 
 ## 📋 Features
