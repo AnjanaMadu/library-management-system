@@ -13,7 +13,7 @@ A web application for managing a library's books and members.
 
 ## 🔍 Live Preview
 
-Check out the live preview at [https://lms.anjanamadu.net](https://lms.anjanamadu.net).
+Check out the live preview at [https://lms.anjanamadu.net](https://lms.anjanamadu.net). (database functions isnt working!)
 
 ## 💻 Developer
 
