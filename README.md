@@ -1,6 +1,8 @@
 # 📚 Library Management System 
 
 A web application for managing a library's books and members. 
+---
+This project works with Windows only. You will need to have Microsoft Access installed to use this project. I have tested this project on Windows 10 with Microsoft Access 2021.
 
 ## 📋 Features
 
@@ -11,9 +13,6 @@ A web application for managing a library's books and members.
 - Microsoft Access database for storing information
 - Clean user interface with dark mode option
 
-## 🔍 Live Preview
-
-Check out the live preview at [https://lms.anjanamadu.net](https://lms.anjanamadu.net). (database functions isnt working!)
 
 ## 💻 Developer
 

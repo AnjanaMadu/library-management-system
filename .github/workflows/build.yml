@@ -15,8 +15,18 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install p7zip-full -y
-          chmod +x ./build.sh
-          ./build.sh
+
+          mkdir output
+          
+          echo "Building windows/amd64"
+          GOOS=windows GOARCH=amd64 go build
+          7z a -tzip output/lms-windows-amd64.zip library-management-system.exe public database.accdb
+          rm library-management-system.exe
+
+          echo "Building windows/386"
+          GOOS=windows GOARCH=386 go build
+          7z a -tzip output/lms-windows-386.zip library-management-system.exe public database.accdb
+          rm library-management-system.exe
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
